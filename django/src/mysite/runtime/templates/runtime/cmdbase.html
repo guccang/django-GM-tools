@@ -13,20 +13,117 @@
         margin: 0 0 3px;
         padding: 4px 5px;
     }
+    
+    span.left
+    {
+        float:left;
+        width:0.7em;
+        font-size:400%;
+        font-family:algerian,courier;
+        line-height:100%;
+        padding:2px;
+        margin :1px;
+        color:#000
+    }
+    span.right
+    {
+        float:right;
+        width:0.7em;
+        font-size:400%;
+        font-family:algerian,courier;
+        line-height:10%;
+    }
+    
+    div.cBody
+    {
+        color : #000;
+        width : 100%;
+        hight : 100%;
+        background: silver;
+        margin : 0;
+        padding: 0;
+        font-family: Georgia,Palatino,serif;
+    }
+    
+    p
+    {
+        margin  : 1px;
+        padding : 2px;
+    }
+    
+    body
+    {
+       background: #fff;
+       margin :0;
+       padding:0;
+    }
+    
+    div.cG
+    {
+        margin :0;
+        padding:0;
+    }
+    
+    div.cUser,div.cFooter
+    {
+       margin:2px;
+       padding:10px;
+       background :  #fff;
+    }
+    span.cUser
+    {
+        color : blue;
+    }
+    
+    div.field
+    {
+        background:sliver;
+        margin:1px;
+        padding:1px;
+    }
+
+
 </style>
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    {% block title %}{% endblock %}
 </head>
 <body>
-    {% block notify %} notify {% endblock %}
-    <hr>
-    {% block pre %} pre {% endblock %}
-    {% block content %}content{% endblock %}
-    {% block after%} after{% endblock%}
-    <hr>
-    {% block footer %}
-    {% block parent%} <a href='/runtime'>返回</a> {% endblock %}
-    <p>Thanks for using. Have a good day.</p>
-    {% endblock %}
+    <div class="cBody">
+        <div>
+            <a href='/runtime/'>
+                <span class="left">G</span>
+            </a>
+        </div>
+        <div class="cUser">
+            {% block user %}
+              <p> 
+                welcom,
+                <a href='/admin/'>{{username}}</a>,
+                <a href='/admin/logout'>logout</a> .
+                </p>
+            {% endblock %}
+            {% block pageInfo%}{%endblock%}
+        </div>
+   
+        {% block notify %}  {% endblock %}
+        {% block pre%} 
+            <table>
+            {% for v in pre%}
+                <tr><td>{{ forloop.counter }}:{{v}}</tr></td>
+            {%empty%}
+                
+            {%endfor%}
+            </table>
+        {%endblock%}
+        {% block content %} {% endblock %}
+        {% block after%}    {% endblock %}
+    
+        <div class="cFooter">
+        {% block footer %}
+            <p>Thanks for using.</p><p> Have a good day.<span class="right">S</span></p>
+        {% endblock %}
+        </div>
+        
+    </div>
 </body>
 </html>

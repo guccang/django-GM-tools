@@ -13,10 +13,12 @@ from django.db import models
 
 
 class Activitymodel(models.Model):
-    activityid = models.IntegerField(db_column='activityID', primary_key=True)  # Field name made lowercase.
+    activityid = models.SmallIntegerField(blank=True, null=True)
+    version = models.CharField(max_length=255, blank=True, null=True)
     begin = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
     parms = models.CharField(max_length=255, blank=True, null=True)
+    descript = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -124,6 +126,17 @@ class Compensationinfo(models.Model):
         db_table = 'compensationinfo'
 
 
+class Configuimodel(models.Model):
+    type = models.IntegerField(blank=True, null=True)
+    version = models.CharField(max_length=255, blank=True, null=True)
+    parms = models.CharField(max_length=255, blank=True, null=True)
+    descript = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'configuimodel'
+
+
 class Datalog(models.Model):
     index = models.IntegerField(db_column='Index', primary_key=True)  # Field name made lowercase.
     userid = models.IntegerField(db_column='UserID', blank=True, null=True)  # Field name made lowercase.
@@ -210,6 +223,17 @@ class Gameuser(models.Model):
     class Meta:
         managed = False
         db_table = 'gameuser'
+
+
+class GmMmmmm(models.Model):
+    activityid = models.IntegerField(db_column='activityID', primary_key=True)  # Field name made lowercase.
+    begin = models.DateTimeField(blank=True, null=True)
+    end = models.DateTimeField(blank=True, null=True)
+    parms = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gm_mmmmm'
 
 
 class Happymodedata(models.Model):
@@ -336,6 +360,21 @@ class Payuserinfoex(models.Model):
     class Meta:
         managed = False
         db_table = 'payuserinfoex'
+
+
+class Realinfodatamodel(models.Model):
+    itemid = models.IntegerField(db_column='itemID', blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(max_length=255, blank=True, null=True)
+    needhappypoint = models.IntegerField(db_column='needHappyPoint', blank=True, null=True)  # Field name made lowercase.
+    refleshnum = models.IntegerField(db_column='RefleshNum', blank=True, null=True)  # Field name made lowercase.
+    minuteforreflesh = models.IntegerField(db_column='MinuteForReflesh', blank=True, null=True)  # Field name made lowercase.
+    timerefleshcng = models.IntegerField(db_column='timeRefleshCng', blank=True, null=True)  # Field name made lowercase.
+    canreplace = models.IntegerField(db_column='canReplace', blank=True, null=True)  # Field name made lowercase.
+    descript = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'realinfodatamodel'
 
 
 class Realiteminfo(models.Model):

@@ -1,0 +1,49 @@
+{% extends 'runtime/cmdbase.html'%}
+
+<h1>{% block notify%}{{auth}}{% endblock%}</h1>
+
+{% block pageInfo %}
+    This is the UserInfo Runtime cmd Page.
+{% endblock%}
+
+
+
+{% block content%} 
+    {% if form.errors %}
+        <p style="color: red;">
+            请改正以下错误{{ form.errors|pluralize }} 
+        </p>
+    {% endif %}
+    
+    <form action="" method="post">{% csrf_token %}
+        <div class="field">
+            {{form.cmd.errors}}
+            <label for="id_cmd">cmd:</label>
+            <div class="cLeft">{{ form.cmd }}</div>
+        </div>
+        <div class="field">
+			{{ form.id.errors }}
+            <label for="id_id">用戶id:</label> 
+            <div class="cLeft">{{ form.id }} </div>
+        </div>
+        <div class="field">
+            {{form.name.errors}}
+            <label for="id_name">用戶名:</label>
+            <div class="cLeft">{{ form.name }}</div>
+        </div>
+        <div class="field">
+            {{form.ur_score.errors}}
+            <label for="id_ur_score">排行榜:</label>
+            <div class="cLeft">{{ form.ur_score }}</div>
+        </div>
+        <div class="field">
+            {{form.urt_score.errors}}
+            <label for="id_urt_score">积分榜:</label>
+            <div class="cLeft">{{ form.urt_score }}</div>
+        </div>
+        <input type="submit" value="查找" onclick="return check(this.form)">
+    </form>
+    
+{% endblock%}
+
+{% block after%} {{after}} {% endblock%}

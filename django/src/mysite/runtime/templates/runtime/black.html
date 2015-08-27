@@ -1,14 +1,22 @@
 {% extends 'runtime/cmdbase.html'%}
 
-<h1>{% block notify%}{{notify}}{% endblock%}</h1>
+<h1>{% block notify%}{{auth}}{% endblock%}</h1>
 
-{% block pre%} 
-    <table>
-    {% for v in pre%}
-        <tr><td>{{ forloop.counter }}:  {{v}}</tr></td>
-    {%endfor%}
-    </table>
-{%endblock%}
+{% block pageInfo %}
+    This is the BlackList Runtime cmd Page.
+    
+       
+    <script type="text/javascript">
+        function check(form){
+            var info = "确认删除:" + form.info.value ;
+            var gnl = confirm(info);
+            return gnl;
+        }
+    </script>
+    
+{% endblock%}
+
+
 
 {% block content%} 
     {% if form.errors %}
@@ -16,21 +24,30 @@
             请改正以下错误{{ form.errors|pluralize }} 
         </p>
     {% endif %}
-
+ 
+   
     <form action="" method="post">{% csrf_token %}
+  
         <div class="field">
 			{{ form.id.errors }}
-            <label for="id_id">id:</label> 
-            {{ form.id }}
+            <label for="id_id">排名:</label> 
+            <div class="cLeft">{{ form.id }} </div>
         </div>
+        
+        <div class="field">
+			{{ form.info.errors }}
+            <label for="id_info">删除信息:</label> 
+            <div class="cLeft">{{ form.info }} </div>
+        </div>
+        
         <div class="field">
             {{ form.message.errors }}
-            <label for="id_message">Message:</label>
-            {{ form.message }}
+            <label for="id_message">删除原因:</label>
+            <div class="cLeft">{{ form.message }}</div>
         </div>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick="return check(this.form)">
     </form>
-
+    
 {% endblock%}
 
 {% block after%} {{after}} {% endblock%}

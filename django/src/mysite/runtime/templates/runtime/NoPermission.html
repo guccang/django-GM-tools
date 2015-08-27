@@ -1,0 +1,10 @@
+{% extends 'runtime/cmdbase.html'%}
+
+{% block user %}
+    hi : {{username}} <a href='/admin/logout'>logout</a>
+{% endblock%}
+
+
+<h1>{% block notify%}
+<p>{{notify}}</p>
+{% endblock%}</h1>

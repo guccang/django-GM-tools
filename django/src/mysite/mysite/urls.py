@@ -20,22 +20,25 @@ from django.contrib.auth.views import login,logout
 #from django.conf.urls.static import static
 urlpatterns = [
 # config:
-	url(r'^$','learn.views.home', name='home'),
-	url(r'base','learn.views.base',name='base'),
-	url(r'^val','learn.views.val',name='val'),
-	url(r'^gm','learn.views.GMTools',name='gm'),
-	url(r'^form','learn.views.form',name='form'),
-	url(r'^time$','learn.views.current_datetime',name='time'),
-	url(r'^hours/(\w{1,2})/','learn.views.hours_ahead',name='hours'),
+    url(r'^$','learn.views.home', name='home'),
+    url(r'base','learn.views.base',name='base'),
+    url(r'^val','learn.views.val',name='val'),
+    url(r'^gm','learn.views.GMTools',name='gm'),
+    url(r'^form','learn.views.form',name='form'),
+    url(r'^time$','learn.views.current_datetime',name='time'),
+    url(r'^hours/(\w{1,2})/','learn.views.hours_ahead',name='hours'),
     
 # cmd
     url(r'^runtime/$','runtime.views.runtime',name='runtime'),
     url(r'^runtime/black$','runtime.views.black',name='black'),
+    url(r'^runtime/restore$','runtime.views.restore',name='restore'),
+    url(r'^runtime/config$','runtime.views.config',name='config'),
+    url(r'^runtime/userinfo$','runtime.views.userinfo',name='userinfo'),
 #
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^accounts/login/$',login),
-	url(r'^accounts/logout/$',logout),
-	url(r'^contact/$','learn.views.contact',name='contact'),
+    url(r'^accounts/login/$',login),
+    url(r'^accounts/logout/$',logout),
+    url(r'^contact/$','learn.views.contact',name='contact'),
 ]
 
 #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) not userd ///??????

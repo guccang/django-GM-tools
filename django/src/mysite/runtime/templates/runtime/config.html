@@ -1,0 +1,46 @@
+{% extends 'runtime/cmdbase.html'%}
+
+<h1>{% block notify%}{{notify}}{% endblock%}</h1>
+
+{% block pageInfo %}
+    update config data form mysql Runtime cmd Page.
+{% endblock%}
+
+{% block pre%} 
+    <table>
+    {% for v in pre%}
+        <tr><td>{{ forloop.counter }}:{{v}}</tr></td>
+    {%empty%}
+        empty pre
+    {%endfor%}
+    </table>
+{%endblock%}
+
+{% block content%} 
+    {% if form.errors %}
+        <p style="color: red;">
+            请改正以下错误{{ form.errors|pluralize }} 
+        </p>
+    {% endif %}
+ 
+   
+    <form action="" method="post">{% csrf_token %}
+  
+        <div class="field">
+			{{ form.tableName.errors }}
+            <label for="id_tableName">表名称:</label> 
+            <div class="cLeft">{{ form.tableName }} </div>
+        </div>
+        
+        <div class="field">
+			{{ form.parms.errors }}
+            <label for="id_parms">参数信息:</label> 
+            <div class="cLeft">{{ form.parms }} </div>
+        </div>
+
+        <input type="submit" value="Submit" >
+    </form>
+    
+{% endblock%}
+
+{% block after%} {{after}} {% endblock%}

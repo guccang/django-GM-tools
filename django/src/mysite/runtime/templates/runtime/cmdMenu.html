@@ -1,0 +1,66 @@
+{% extends 'runtime/cmdbase.html'%}
+
+
+{%block title%}
+<title> cmd menu </title>
+<style>
+ul
+{
+list-style-type:none;
+margin:1;
+padding:1;
+overflow:hidden;
+}
+li
+{
+float:left;
+}
+
+li a:link,a:visited
+{
+    display:block;
+    width:200px;
+    font-weight:bold;
+    color:white;
+    background-color:gray;
+    text-align:center;
+    padding:45px;
+    margin:1px;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+
+li a:hover,a:active
+{
+     background-color:#cc0000;
+}
+
+div
+{
+width:100%
+}
+
+
+</style>
+{%endblock%}
+
+{% block user%}
+    <p>
+    welcome,<span class="cUser">{{username}}</span>
+    </p>
+    <p>
+    This is the all runtime cmd list.
+    </p>
+{% endblock%}
+
+{% block content%} 
+    <style>
+     
+    </style>
+    <ul>
+    {%for k,v in dic.items%}
+        <li><a href={{v}}>{{k}}</a></li>
+    {%endfor%}
+    </ul>
+{% endblock%}
+

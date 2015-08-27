@@ -17,11 +17,14 @@ import urllib.error
 # 中文encode报错 END
 #
 
+GAME_SERVER_HOST = '127.0.0.1'
+GAME_SERVER_PORT = 8036
+
 def getGSInfo(test_data):
 	test_data.encode('utf-8')
-	url = 'http://127.0.0.1:8036/Service.aspx/webBackOffice'
-	headerdata={'Host':"127.0.0.1"}
-	conn = http.client.HTTPConnection("127.0.0.1",8036);
+	url = ('http://%s:%d/Service.aspx/webBackOffice' % (GAME_SERVER_HOST,GAME_SERVER_PORT))
+	headerdata={'Host':GAME_SERVER_HOST}
+	conn = http.client.HTTPConnection(GAME_SERVER_HOST,GAME_SERVER_PORT)
 	conn.request(method="POST",url=url,body=test_data,headers=headerdata)
 	response=conn.getresponse()
 	res = response.read()
